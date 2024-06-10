@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Cocktail } from '../cocktail.interface';
 
 @Component({
   selector: 'app-cocktail-list',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './cocktail-list.component.scss'
 })
 export class CocktailListComponent {
+  @Input()
+  cocktails: Cocktail[] = [];
+  @Output() private changeCocktail: EventEmitter<number> =
+    new EventEmitter<number>();
 
+  setCocktail(index: number) {
+    this.changeCocktail.emit(index);
+  }
 }
